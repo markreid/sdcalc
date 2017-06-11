@@ -17,6 +17,14 @@ const numberKeys = '123456789'.split('');
 
 class KeyPad extends React.Component {
 
+  componentWillMount() {
+    window.addEventListener('keyup', this.keyHandler);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keyup', this.keyHandler);
+  }
+
   constructor() {
     super();
     this.state = {
@@ -25,6 +33,29 @@ class KeyPad extends React.Component {
   }
 
   setValue = (value) => this.props.set(value)
+
+  keyHandler = (evt) => {
+    switch (evt.key) {
+      case '.':
+        return this.point();
+
+      case 'Backspace':
+        return this.backspace();
+
+      case '0':
+        return this.zero();
+
+      case 'Enter':
+        return this.props.done();
+
+      default:
+        break;
+    }
+
+    if ('123456789'.includes(evt.key)) {
+      return this.append(evt.key);
+    }
+  }
 
   backspace = () => {
     const { value } = this.props;
