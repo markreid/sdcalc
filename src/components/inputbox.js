@@ -1,6 +1,7 @@
 import React from 'react';
 
 import KeyPad from './keypad';
+import InputBoxPreValues from './inputbox-pre-values';
 
 class InputBox extends React.Component {
 
@@ -21,9 +22,16 @@ class InputBox extends React.Component {
     this.props.set(this.props.name, value);
   }
 
+  setAndClose = (value) => {
+    this.props.set(this.props.name, value);
+    this.setState({
+      keypadVisible: false,
+    });
+  }
+
   render() {
 
-    const { label, value } = this.props;
+    const { label, value, valuesMap } = this.props;
     const { keypadVisible } = this.state;
 
     const focusClass = keypadVisible ? 'focus' : '';
@@ -38,6 +46,14 @@ class InputBox extends React.Component {
           className={`input ${focusClass}`}
           onClick={this.toggleKeypad}
         >{value}</div>
+
+        {keypadVisible && valuesMap && (
+          <InputBoxPreValues
+            valuesMap={valuesMap}
+            set={this.setAndClose}
+          />
+        )}
+
         {keypadVisible && (
           <KeyPad set={this.set} value={value} done={this.toggleKeypad} />
         )}

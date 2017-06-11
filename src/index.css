@@ -13,6 +13,14 @@ html {
   box-sizing: border-box;
 }
 
+button {
+  -webkit-appearance: none;
+  color: var(--white);
+  background: none;
+  border: none;
+  outline: none;
+}
+
 html, body {
   background: var(--darkBlue);
   color: var(--white);
@@ -45,7 +53,7 @@ h1 {
 }
 
 .input-box .label {
-  font-size: 1rem;
+  font-size: 1.5rem;
   margin: 0 0 0.5rem;
 }
 
@@ -88,6 +96,7 @@ h1 {
   position: fixed;
   bottom: 0;
   width: 100%;
+  z-index: 1;
 }
 
 .keypad-button {
@@ -99,13 +108,43 @@ h1 {
   border: 1px solid var(--white);
   border-bottom: none;
   border-left: none;
+  font-size: 32px;
+  font-weight: 800;
 }
-
-button {
-  color: var(--white);
-}
-
 
 .calc-form {
   position: relative;
+}
+
+
+
+/**
+ * inputbox pre-populated values.
+ *
+ */
+
+.input-box-pre-values .btn-choose {
+  display: block;
+  width: 100%;
+  padding: 1em;
+  font-size: 1.25rem;
+  color: var(--skyBlue);
+}
+
+
+.input-box-pre-values.focus {
+  z-index: 2; /* above keypad */
+  background: var(--darkBlue);
+}
+
+.input-box-pre-values .list .list-item {
+  display: block;
+  width: 100%;
+  padding: 1em;
+  font-size: 1.5rem;
+  background: var(--blue);
+}
+
+.input-box-pre-values .list .list-item:nth-child(even) {
+  background: var(--skyBlue);
 }
