@@ -1,0 +1,8 @@
+CACHE MANIFEST
+# appcache.5
+
+CACHE:
+# /static/js/bundle.js
+
+NETWORK:
+*

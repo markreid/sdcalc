@@ -5,10 +5,15 @@
   "homepage": "https://markreid.github.io/sdcalc",
   "dependencies": {
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "react-icons": "^2.2.5",
+    "recompose": "^0.24.0"
   },
   "devDependencies": {
     "gh-pages": "^1.0.0",
+    "flux": "^3.1.2",
+    "localforage": "^1.5.0",
+    "moment": "^2.18.1",
     "react-fastclick": "^3.0.2-alpha.1",
     "react-scripts": "1.0.7"
   },

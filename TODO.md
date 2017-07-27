@@ -2,14 +2,10 @@
 
 ### Bugs, cleanup
 
-
-
 ### Features
 
-* Drink Tracker
-  * Track how many drinks you've had
-  * Enter weight to estimate when you'll reach a level (0.05, 0, etc)
-
+- Add a drink from the past (ie, don't start drinking *now*).
+- Edit existing drinks
 
 ### Other
 

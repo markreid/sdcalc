@@ -25,7 +25,7 @@ html, body {
   background: var(--darkBlue);
   color: var(--white);
   font-size: 16px;
-  height: 100%;
+  height: 100vh;
 }
 
 body {
@@ -39,9 +39,24 @@ h1 {
   color: var(--red);
 }
 
-.App {
+.view--title {
+  font-size: 1.4rem;
+  margin: 1em 0 1em;
+}
+
+.view--title h4 {
+  margin: 0;
+}
+
+.view .btn-change-mode {
+  color: var(--skyBlue);
+}
+
+#root {
   text-align: center;
   color: var(--white);
+  width: 100%;
+  overflow-x: hidden; /* for sidebar slideout */
 }
 
 .input-box {
@@ -53,7 +68,7 @@ h1 {
 }
 
 .input-box .label {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   margin: 0 0 0.5rem;
 }
 
@@ -61,9 +76,9 @@ h1 {
   align-self: center;
   text-align: center;
   width: 90%;
-  padding: 12px;
-  font-size: 30px;
-  height: 56px;
+  padding: 6px;
+  font-size: 26px;
+  height: 42px;
   border: none;
   background: var(--skyBlue);
   border-radius: 4px;
@@ -78,6 +93,7 @@ h1 {
   position: absolute;
   top: 0;
   height: 100%;
+  z-index: 1;
 }
 
 .input-box.focus .input {
@@ -91,12 +107,8 @@ h1 {
   flex-wrap: wrap;
   border-left: 1px solid var(--white);
   border-bottom: 1px solid var(--white);
-  height: 50%;
-
-  position: fixed;
-  bottom: 0;
-  width: 100%;
   z-index: 1;
+  height: 60%;
 }
 
 .keypad-button {
@@ -110,10 +122,6 @@ h1 {
   border-left: none;
   font-size: 32px;
   font-weight: 800;
-}
-
-.calc-form {
-  position: relative;
 }
 
 
@@ -147,4 +155,253 @@ h1 {
 
 .input-box-pre-values .list .list-item:nth-child(even) {
   background: var(--skyBlue);
+}
+
+/** drinks view */
+.drinks {
+  padding: 12px;
+}
+
+.drinks .sentence {
+  font-size: 1.25rem;
+  line-height: 1.1em;
+  margin: 1 0 1em;
+}
+
+.drinks .sentence + .sentence {
+  margin: 0 0 1.5em;
+}
+
+.drinks .sentence span {
+  white-space: nowrap;
+}
+
+.drinks .drinks-list {
+  margin: 0 0 32px;
+}
+
+/** drinks summary header */
+.drinks-summary p {
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/** individual drink */
+.drink {
+  background: var(--skyBlue);
+  padding: 8px;
+  border-top: 1px solid var(--darkBlue);
+  color: var(--darkBlue);
+}
+
+.drink:nth-child(even) {
+  background: var(--blue);
+}
+
+.drink .meta, .drink .actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.drink .meta .timestamp, .drink .meta .vol-abv {
+  flex: 2;
+  text-align: left;
+}
+
+.drink .meta p {
+  margin: 0;
+}
+
+.drink .meta .sd {
+  flex: 1;
+  text-align: right;
+}
+
+
+.drink .actions {
+  margin: 16px 0 0;
+}
+
+.readmore .references {
+  text-align: left;
+  word-break: break-word;
+}
+
+.readmore .references li {
+  margin: 0 0 0.5em;
+}
+
+.readmore .references li a {
+  color: inherit;
+}
+
+/** sidebar slideout thing */
+
+.sidebar-wrapper {
+  display: flex;
+  width: 300%;
+  transform: translateX(-33.3333334%);
+  transition: transform 0.4s ease-in-out;
+}
+
+.sidebar-wrapper.left {
+  transform: translateX(0);
+}
+
+.sidebar-wrapper.right {
+  transform: translateX(-66.6666667%);
+}
+
+.sidebar-wrapper > div {
+  flex: 1;
+  display: flex;
+}
+
+/* buttons  */
+
+.btn {
+  background: white;
+  border-radius: 2px;
+  padding: 8px;
+  color: var(--darkBlue);
+  font-size: 1rem;
+}
+
+
+
+#root, #router, .App {
+  height: 100%;
+  display: flex;
+  flex: 1;
+}
+
+.App {
+  flex-direction: column;
+}
+
+.App > header {
+  flex: 0 0 auto;
+  display: flex;
+  background: var(--blue);
+  border-bottom: 2px solid white;
+  padding: 8px;
+}
+
+.App > header .drinks-summary {
+  flex: 1;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.App .sidebar-wrapper {
+  flex: 1;
+}
+
+
+.view {
+  flex: 1; /* height */
+  display: flex;
+  flex-direction: column;
+  padding: 3%;
+}
+
+.keypad {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.calc-form {
+  position: relative;
+  flex: 1;
+}
+
+
+.settings .success-notice {
+  color: var(--white);
+  line-height: 34px;
+}
+
+.calculator--btn-switch {
+  margin: 0.5em 0;
+  color: var(--skyBlue);
+  font-size: 1rem;
+}
+
+
+/* splash */
+.splash {
+  text-align: center;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  animation: fadein 0.5s ease-in-out;
+}
+
+h1 {
+  color: var(--skyBlue);
+  font-weight: 200;
+  font-size: 2rem;
+}
+
+.splash h1 {
+  margin-top: 25%;
+}
+
+
+/* spinner */
+.spinner svg {
+  animation: rotate 2s cubic-bezier(0.5, 0.35, 0.5, 0.65) infinite;
+}
+
+
+/* ButtonLoader */
+.button-loader .wrapper {
+  position: relative;
+}
+
+.button-loader .spinner, .button-loader .button-loader-children {
+  transition: opacity 0.1s ease-in-out;
+}
+
+.button-loader .spinner {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+.button-loader .spinner {
+  opacity: 0;
+}
+
+.button-loader.loading .button-loader-children {
+  opacity: 0;
+}
+
+.button-loader.loading .spinner {
+  opacity: 1;
+}
+
+
+/* animations */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

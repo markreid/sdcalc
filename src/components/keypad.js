@@ -4,6 +4,9 @@
 
 import React from 'react';
 
+import BackspaceIcon from 'react-icons/lib/io/backspace-outline';
+import CheckIcon from 'react-icons/lib/io/checkmark';
+
 const KeypadButton = (props) => (
   <div className="keypad-button"
     onClick={() => props.onClick(props.value)}
@@ -87,10 +90,10 @@ class KeyPad extends React.Component {
         {numberKeys.map(key => (
           <KeypadButton key={key} value={key} onClick={this.append} />
         ))}
-        <KeypadButton key="0" value="0" onClick={this.zero} />
         <KeypadButton key="." value="." onClick={this.point} />
-        <KeypadButton key="x" value="x" onClick={this.backspace} />
-        <div className="keypad-button" onClick={this.props.done}>OK</div>
+        <KeypadButton key="0" value="0" onClick={this.zero} />
+        <KeypadButton key="backspace" value={<BackspaceIcon />} onClick={this.backspace} />
+        <div className="keypad-button" onClick={this.props.done}><CheckIcon /></div>
       </div>
     );
   }

@@ -6,19 +6,21 @@
 import React from 'react';
 
 import { calcSD } from '../util';
-import { VOLUME } from '../constants';
+import { addDrink } from '../actions/drinks';
 
 import InputBox from './inputbox';
 
 const COMMON_VOLUMES_MAP = {
   pot: '285',
-  schooie: '425',
+  schooner: '425',
   pint: '570',
-  tinnie: '375',
+  stubby: '375',
   'euro stubby': '330',
-  longie: '750',
+  longneck: '750',
   'glass of wine': '150',
   'bottle of wine': '750',
+  shot: 30,
+  'double shot': 60,
 };
 
 
@@ -52,17 +54,20 @@ class SD extends React.Component {
     this.props.setActiveView(null);
   }
 
-  switchToVolume = () => {
-    this.props.setActiveView(VOLUME);
+  addDrink = () => {
+    const { sd, abv, volume } = this.state;
+    addDrink({
+      sd,
+      abv,
+      volume,
+    });
   }
 
   render() {
     const { sd, abv, volume } = this.state;
 
     return (
-      <div className="calc-volume">
-        <h4 onClick={this.switchToVolume}>Calculate Standard Drinks</h4>
-
+      <div className="view calc-volume">
         <div className="calc-form">
 
           <InputBox
@@ -84,6 +89,8 @@ class SD extends React.Component {
             <p className="label">Standard Drinks</p>
             <div className="input">{sd}</div>
           </div>
+
+          {sd && <button className="btn" onClick={this.addDrink}>Drink this</button>}
 
         </div>
 

@@ -7,7 +7,7 @@
 import React from 'react';
 
 import { calcVolume } from '../util';
-import { SD } from '../constants';
+import { addDrink } from '../actions/drinks';
 
 import InputBox from './inputbox';
 
@@ -37,21 +37,20 @@ class Volume extends React.Component {
     });
   }
 
-  resetActiveView = () => {
-    this.props.setActiveView(null);
-  }
-
-  switchToSD = () => {
-    this.props.setActiveView(SD);
+  addDrink = () => {
+    const { sd, abv, volume } = this.state;
+    addDrink({
+      sd,
+      abv,
+      volume,
+    });
   }
 
   render() {
     const { sd, abv, volume } = this.state;
 
     return (
-      <div className="calc-volume">
-        <h4 onClick={this.switchToSD}>Calculate Volume</h4>
-
+      <div className="view calc-volume">
         <div className="calc-form">
 
           <InputBox
@@ -72,6 +71,8 @@ class Volume extends React.Component {
             <p className="label">Volume (ml)</p>
             <div className="input">{volume}</div>
           </div>
+
+          {sd && <button className="btn" onClick={this.addDrink}>Drink this</button>}
 
         </div>
 
